@@ -149,219 +149,190 @@ graph
     id 116297 TAVANCADOSEMCOMPUTADORES 4
   ]
 
-edge
+  edge
   [
+    comment "APC=>CL"
     source 113476
     target 129011
   ]
-
-edge
+  edge
   [
+    comment "APC=>LCL"
     source 113476
     target 129020
   ]
-
-edge
   [
-    source 113034
-    target 113042
-  ]
-
-edge
-  [
-    source 129011
-    target 116394
-  ]
-edge
-  [
-    source 129020
-    target 116394
-  ]
-
-  edge
-  [
-    source 116319
-    target 117889
-  ]
-
-  edge
-  [
-    source 113042
-    target 113417
-  ]
-
-  edge
-  [
-    source 113034
-    target 115045
-  ]
-
-  edge
-  [
-    source 113450
-    target 117366
-  ]
-
-  edge
-  [
-    source 116319
-    target 117366
-  ]
-
-  edge
-  [
-    source 117889
-    target 117897
-  ]
-
-  edge
-  [
+    comment "APC=>ED"
     source 113476
     target 116319
   ]
-
   edge
   [
+    comment "C1=>C2"
+    source 113034
+    target 113042
+  ]
+  edge
+  [
+    comment "C1=>PE"
+    source 113034
+    target 115045
+  ]
+  edge
+  [
+    comment "CL=>OAC"
+    source 129011
+    target 116394
+  ]
+  edge
+  [
+    comment "LCL=>OAC"
+    source 129020
+    target 116394
+  ]
+  edge
+  [
+    comment "ED=>TP1"
     source 116319
-    target 116572
+    target 117889
   ]
-
   edge
   [
+    comment "C2=>CN"
+    source 113042
+    target 113417
+  ]
+  edge
+  [
+    comment "ED=>LC1"
     source 116319
-    target 116343
+    target 117366
   ]
-
   edge
   [
-    source 116394
-    target 117935
-  ]
-
-  edge
-  [
+    comment "ED=>TAG"
     source 116319
     target 117901
   ]
-
   edge
   [
-    source 117897
-    target 117935
+    comment "ED=>REDES"
+    source 116319
+    target 116572
   ]
-
   edge
   [
-    source 116343
-    target 116441
+    comment "ED=>LP"
+    source 116319
+    target 116343
   ]
-
   edge
   [
-    source 117889
-    target 116441
+    comment "ED=>SI"
+    source 116319
+    target 116416
   ]
-
   edge
   [
+    comment "ED=>BD"
     source 116319
     target 116378
   ]
-
   edge
   [
+    comment "ED=>IIA"
     source 116319
     target 116653
   ]
-
   edge
   [
-    source 116319
-    target 116432
+    comment "TP1=>TP2"
+    source 117889
+    target 117897
   ]
-
   edge
   [
+    comment "TP1=>ENG_SOFT"
+    source 117889
+    target 116441
+  ]
+  edge
+  [
+    comment "TP2=>PC"
+    source 117897
+    target 117935
+  ]
+  edge
+  [
+    comment "OAC=>PC"
+    source 116394
+    target 117935
+  ]
+  edge
+  [
+    comment "OAC=>SB"
     source 116394
     target 116432
   ]
-
   edge
   [
+    comment "ED=>SB"
+    source 116319
+    target 116432
+  ]
+  edge
+  [
+    comment "PC=>FSO"
     source 117935
     target 117960
   ]
-
   edge
   [
+    comment "A1=>AUTOMATOS"
     source 113107
     target 116882
   ]
-
   edge
   [
-    source 116319
-    target 116416
-  ]
-
-  edge
-  [
-    source 116378
-    target 116416
-  ]
-
-  edge
-  [
-    source 116319
-    target 117943
-  ]
-
-  edge
-  [
+    comment "PE=>COMP_EXP"
     source 115045
     target 117943
   ]
-
   edge
   [
-    source 116572
-    target 117927
-  ]
-
-  edge
-  [
-    source 116343
-    target 117951
-  ]
-
-  edge
-  [
-    source 116432
-    target 117951
-  ]
-
-  edge
-  [
-    source 116882
-    target 117951
-  ]
-
-  edge
-  [
+    comment "C1=>PROJ_ANALI_ALGORIT"
     source 113034
+    target 117536
+  ]
+  edge
+  [
+    comment "ED=>PROJ_ANALI_ALGORIT"
+    source 116319
     target 117536
   ]
 
   edge
   [
-    source 117889
+    comment "LP=>COMPILADORES"
+    source 116343
     target 117951
   ]
-
   edge
   [
-    source 116319
+    comment "SB=>COMPILADORES"
+    source 116432
     target 117951
   ]
-
+  edge
+  [
+    comment "AUTOMATOS=>COMPILADORES"
+    source 116882
+    target 117951
+  ]
+  edge
+  [
+    comment "REDES=>SEGURANCA"
+    source 116572
+    target 117927
+  ]
 ]
