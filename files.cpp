@@ -57,16 +57,38 @@ vector<Materia *> Read(string file)
   return verticesenumerados;
 }
 
-void MakePNG(vector<Materia *> materias)
+void MakeDOT(vector<Materia *> materias)
 {
   ofstream myfile;
   myfile.open("grafo.dot");
-  myfile << "digraph {\n";
+  myfile << "digraph Ciencia_da_Computacao{\n";
   for (int i = 0; i < materias.size(); i++)
   {
-    for (int j = 0; j < materias[i]->conexoes.size(); j++)
+    if (materias[i]->conexoes.size() == 0)
     {
-      myfile << "\t" << materias[i]->id << " -> " << materias[i]->conexoes[j]->id << " [label = " << materias[i]->peso << "];\n";
+      myfile << "\t" << materias[i]->id << "\n ";
+    }
+    else
+    {
+      for (int j = 0; j < materias[i]->conexoes.size(); j++)
+      {
+        myfile << "\t" << materias[i]->id << " -> " << materias[i]->conexoes[j]->id << " [label = " << materias[i]->peso << "];\n";
+      }
+    }
+  }
+  for (int i = 0; i < materias.size(); i++)
+  {
+    if (materias[i]->peso == 2)
+    {
+      myfile << "\t" << materias[i]->id << " [shape=doublecircle, style=filled, fillcolor=green]\n ";
+    }
+    else if (materias[i]->peso == 4)
+    {
+      myfile << "\t" << materias[i]->id << " [shape=doublecircle, style=filled, fillcolor=skyblue]\n ";
+    }
+    else if (materias[i]->peso == 6)
+    {
+      myfile << "\t" << materias[i]->id << " [shape=doublecircle, style=filled, fillcolor=yellow]\n ";
     }
   }
   myfile << "}\n";

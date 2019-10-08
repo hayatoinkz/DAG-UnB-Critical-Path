@@ -7,7 +7,10 @@ int main()
   cout << "Digite o nome do arquivo GML" << endl;
   cin >> file;
   vector<Materia *> Vertices = Read(file + ".gml");
-  MakePNG(Vertices);
+  MakeDOT(Vertices);
   system("dot -Tpng grafo.dot -o grafo.png");
+  vector<Materia *> Grafo_Ordenado = OrganizacaoTopologica(Vertices);
+  MakeDOT(Grafo_Ordenado);
+  system("dot -Tpng grafo.dot -o grafo_Ordenado.png");
   return 0;
 }

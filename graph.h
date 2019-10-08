@@ -24,4 +24,6 @@ public:
   void InsertCon(Materia *materia);
 };
 
+vector<Materia *> OrganizacaoTopologica(vector<Materia *> materias);
+
 #endif
