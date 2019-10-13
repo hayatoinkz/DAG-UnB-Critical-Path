@@ -8,18 +8,12 @@ int main()
   cin >> file;
   vector<Materia *> Vertices = Read(file + ".gml");
   MakeDOT(Vertices);
-  system("dot -Tpng grafo.dot -o grafo.png");
-  for (int i = 0; i < Vertices.size(); i++)
-  {
-    cout << i + 1 << " " + Vertices[i]->nome + " " << Vertices[i]->id << endl;
-  }
-  cout << "-----------------------------------------------------------------------------------" << endl;
   vector<Materia *> Grafo_Ordenado = OrganizacaoTopologica(Vertices);
-  MakeDOT(Grafo_Ordenado);
-  for (int i = 0; i < Grafo_Ordenado.size(); i++)
-  {
-    cout << i + 1 << " " + Grafo_Ordenado[i]->nome + " " << Grafo_Ordenado[i]->id << endl;
-  }
-  system("dot -Tpng grafo.dot -o grafo_Ordenado.png");
+  MakeDOT_Top(Grafo_Ordenado);
+  vector<vector<Materia *>> Caminho_Critico = CPM(Grafo_Ordenado);
+  MakeDOT_CPM(Caminho_Critico[0], Grafo_Ordenado, "red");
+  system("dot -Tpng grafoCPM.dot -o grafo_CPM1.png");
+  MakeDOT_CPM(Caminho_Critico[1], Grafo_Ordenado, "blue");
+  system("dot -Tpng grafoCPM.dot -o grafo_CPM2.png");
   return 0;
 }

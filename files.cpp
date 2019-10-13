@@ -1,4 +1,5 @@
 #include "files.h"
+#include "graph.h"
 
 map<int, Materia *> vertice;
 vector<Materia *> verticesenumerados;
@@ -45,7 +46,8 @@ vector<Materia *> Read(string file)
         FileReader >> checkline;
         FileReader >> destiny;
         vertice[source]->InsertCon(vertice[destiny]);
-        vertice[destiny]->countapontada += 1;
+        vertice[destiny]->InsertAnt(vertice[source]);
+        vertice[destiny]->grau += 1;
       }
     }
   }
@@ -93,4 +95,105 @@ void MakeDOT(vector<Materia *> materias)
   }
   myfile << "}\n";
   myfile.close();
+  system("dot -Tpng grafo.dot -o grafo.png");
+}
+
+void MakeDOT_Top(vector<Materia *> materias)
+{
+  ofstream myfile;
+  myfile.open("grafo_Ordenado.dot");
+
+  myfile << "digraph Ciencia_da_Computacao{\n";
+  myfile << "\tnode [shape=doublecircle];\n";
+  myfile << "\tranksep = \"4\";\n";
+  myfile << "\tsubgraph{\n ";
+  myfile << "\trank = same; ";
+
+  for (int i = 0; i < materias.size(); i++)
+  {
+    myfile << materias[i]->id << "; ";
+  }
+  myfile << "\n\t}\n";
+
+  for (int i = 0; i < materias.size(); i++)
+  {
+    if (materias[i]->conexoes.size() == 0)
+    {
+      myfile << "\t" << materias[i]->id << "\n ";
+    }
+    else
+    {
+      for (int j = 0; j < materias[i]->conexoes.size(); j++)
+      {
+        myfile << "\t" << materias[i]->id << " -> " << materias[i]->conexoes[j]->id << " [label = " << materias[i]->peso << "];\n";
+      }
+    }
+  }
+
+  for (int i = 0; i < materias.size(); i++)
+  {
+    if (materias[i]->peso == 2)
+    {
+      myfile << "\t" << materias[i]->id << " [style=filled, fillcolor=green]\n ";
+    }
+    else if (materias[i]->peso == 4)
+    {
+      myfile << "\t" << materias[i]->id << " [style=filled, fillcolor=skyblue]\n ";
+    }
+    else if (materias[i]->peso == 6)
+    {
+      myfile << "\t" << materias[i]->id << " [style=filled, fillcolor=yellow]\n ";
+    }
+  }
+  myfile << "}\n";
+  myfile.close();
+  system("dot -Tpng grafo_Ordenado.dot -o grafo_Ordenado.png");
+}
+
+void MakeDOT_CPM(vector<Materia *> CPM, vector<Materia *> materias, string color)
+{
+  {
+    //a->b[color = red, penwidth = 3.0];
+    ofstream myfile;
+    myfile.open("grafoCPM.dot");
+    myfile << "digraph Ciencia_da_Computacao{\n";
+    for (int i = 0; i < materias.size(); i++)
+    {
+      if (materias[i]->conexoes.size() == 0)
+      {
+        myfile << "\t" << materias[i]->id << "\n ";
+      }
+      else
+      {
+        for (int j = 0; j < materias[i]->conexoes.size(); j++)
+        {
+          if ((SearchMateria(CPM, materias[i]) == true) && (SearchMateria(CPM, materias[i]->conexoes[j]) == true))
+          {
+            myfile << "\t" << materias[i]->id << " -> " << materias[i]->conexoes[j]->id << " [label = " << materias[i]->peso << ", color = " + color + ", penwidth = 3.0];\n";
+          }
+          else
+          {
+            myfile << "\t" << materias[i]->id << " -> " << materias[i]->conexoes[j]->id << " [label = " << materias[i]->peso << "];\n";
+          }
+        }
+      }
+    }
+    for (int i = 0; i < materias.size(); i++)
+    {
+      if (materias[i]->peso == 2)
+      {
+        myfile << "\t" << materias[i]->id << " [shape=doublecircle, style=filled, fillcolor=green]\n ";
+      }
+      else if (materias[i]->peso == 4)
+      {
+        myfile << "\t" << materias[i]->id << " [shape=doublecircle, style=filled, fillcolor=skyblue]\n ";
+      }
+      else if (materias[i]->peso == 6)
+      {
+        myfile << "\t" << materias[i]->id << " [shape=doublecircle, style=filled, fillcolor=yellow]\n ";
+      }
+    }
+    myfile << "}\n";
+    myfile.close();
+  }
 }
